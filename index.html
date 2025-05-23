@@ -86,29 +86,17 @@
     const trackInfo = document.getElementById('track-info');
 
     const playlist = [
-      { title: 'Rob D', artist: 'Clubbed To Death', src: 'ytmp3free.cc_clubbed-to-death-matrix-soundtrack-youtubemp3free.org.mp3' },
-      { title: 'Track Two', artist: 'Artist B', src: 'track2.mp3' },
-      { title: 'Track Three', artist: 'Artist C', src: 'track3.mp3' }
+      { title: 'Track One', artist: 'Artist A', src: 'track1.mp3' }
     ];
 
-    let currentTrackIndex = parseInt(localStorage.getItem('currentTrackIndex')) || 0;
-    let savedTime = parseFloat(localStorage.getItem('trackTime')) || 0;
+    let currentTrackIndex = 0;
     let isPlaying = false;
 
     function loadTrack(index) {
       const track = playlist[index];
       audio.src = track.src;
+      audio.currentTime = 0;
       trackInfo.textContent = `${track.title} — ${track.artist}`;
-
-      audio.addEventListener('loadedmetadata', () => {
-        if (savedTime && savedTime < audio.duration) {
-          audio.currentTime = savedTime;
-        } else {
-          audio.currentTime = 0;
-        }
-      }, { once: true });
-
-      localStorage.setItem('currentTrackIndex', index);
     }
 
     function playPause() {
@@ -122,15 +110,9 @@
       isPlaying = !isPlaying;
     }
 
-    audio.addEventListener('timeupdate', () => {
-      localStorage.setItem('trackTime', audio.currentTime);
-    });
-
     audio.addEventListener('ended', () => {
-      savedTime = 0;
-      currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-      loadTrack(currentTrackIndex);
-      if (isPlaying) audio.play();
+      audio.currentTime = 0;
+      audio.play();
     });
 
     playButton.addEventListener('click', playPause);
