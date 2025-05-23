@@ -18,7 +18,7 @@
     }
   </style>
 </head>
-<body>
+<body id="pageBody">
   <audio autoplay loop>
     <source src="rabbit.mp3" type="audio/mpeg" />
   </audio>
@@ -27,11 +27,22 @@
 </a>
 
 <script>
-    window.addEventListener('click', () => {
-      const audio = document.getElementById('music');
-      audio.muted = false;
-      audio.play();
+    const body = document.getElementById('pageBody');
+    const audio = document.getElementById('music');
+
+    body.addEventListener('click', (e) => {
+      // Проверяем, что клик именно по body (не на вложенных элементах)
+      if (e.target === body) {
+        audio.muted = false;
+        audio.play();
+      }
     }, { once: true });
+
+    // Предотвращаем всплытие клика с картинки (чтобы не запускать музыку)
+    const img = document.querySelector('img');
+    img.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
   </script>
 </body>
 </html>
