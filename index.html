@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Follow the white rabbit.</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=OCR+A+Std&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
     body {
       margin: 0;
@@ -13,9 +13,8 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      font-family: 'OCR A Std', monospace, monospace;
-      position: relative;
-      color: #00ff00; /* Зеленый цвет Матрицы */
+      font-family: 'Share Tech Mono', monospace;
+      color: #00ff00;
     }
 
     .container {
@@ -31,39 +30,40 @@
 
     #playButton {
       margin-top: 20px;
-      padding: 12px 24px;
+      padding: 8px 20px;
       font-size: 18px;
-      background-color: white;
-      color: black;
-      border: none;
-      border-radius: 8px;
+      background-color: transparent;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background 0.3s;
-      font-family: 'OCR A Std', monospace;
-      letter-spacing: 2px;
+      transition: background 0.3s, color 0.3s;
+      font-family: 'Share Tech Mono', monospace;
+      letter-spacing: 0.5px;
     }
 
     #playButton:hover {
-      background-color: #ddd;
+      background-color: #00ff00;
+      color: black;
     }
 
     #track-info {
       position: fixed;
       right: 20px;
       bottom: 20px;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 8px 12px;
-      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 6px 10px;
+      border-radius: 6px;
       font-size: 14px;
-      max-width: 250px;
+      max-width: 240px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       user-select: none;
       pointer-events: none;
-      color: #00ff00; /* Зеленый Матрицы */
-      font-family: 'OCR A Std', monospace;
-      letter-spacing: 1.5px;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      letter-spacing: 0px;
     }
   </style>
 </head>
@@ -86,9 +86,9 @@
     const trackInfo = document.getElementById('track-info');
 
     const playlist = [
-      { title: 'Track One', artist: 'Artist A', src: 'tone1.mp3' },
-      { title: 'Track Two', artist: 'Artist B', src: 'tone2.mp3' },
-      { title: 'Track Three (Long Name For The Sake Of Test)', artist: 'Artist Charlie', src: 'tone3.mp3' }
+      { title: 'Track One', artist: 'Artist A', src: 'track1.mp3' },
+      { title: 'Track Two', artist: 'Artist B', src: 'track2.mp3' },
+      { title: 'Track Three', artist: 'Artist C', src: 'track3.mp3' }
     ];
 
     let currentTrackIndex = parseInt(localStorage.getItem('currentTrackIndex')) || 0;
